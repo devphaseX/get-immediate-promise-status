@@ -1,4 +1,4 @@
-type ImmediatePromise = Promise<'pending' | 'resolved' | 'failed'>;
+type ImmediatePromise = Promise<'pending' | 'fulfilled' | 'failed'>;
 
 type Defer<T> = {
   promise: Promise<T>;
@@ -32,7 +32,7 @@ function getPromiseImmediateStatus(task: Promise<unknown>): ImmediatePromise {
   const { promise, resolve } = createDeferP<Awaited<ImmediatePromise>>();
 
   task.then(
-    () => resolve('resolved'),
+    () => resolve('fulfilled'),
     () => resolve('failed')
   );
 
